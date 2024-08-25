@@ -1,0 +1,20 @@
+{
+  "name": "data-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "load": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.45",
+    "mysql": "^2.18.1",
+    "uuid": "^10.0.0"
+  }
+}
