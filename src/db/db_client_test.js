@@ -1,9 +1,12 @@
-const dbClient = require('./persistor');
-dbClient.initConnection();
+const dbClient = require('./db_client');
 
 const testGetAsset = async () => {
-    const ret = await dbClient.GetAsset('A');
-    console.log(ret);
+    try {
+        const ret = await dbClient.GetAsset('A');
+        console.log(ret);
+    } catch (err) {
+        console.error(err.message);
+    }
 };
 
 const testInsertAsset = async () => {
@@ -26,7 +29,7 @@ const testInsertOHLCV = async () => {
         const ret = await dbClient.InsertOHLCV({
             assetId: '123',
             symbol: 'A',
-            dateTime: now,
+            datetime: now,
             open: 1.1,
             high: 1.2,
             low: 1.3,
@@ -40,12 +43,14 @@ const testInsertOHLCV = async () => {
     }
 }
 
-const testTimeConvertion = () => {
-    const dt = '2023-01-03 09:30:00';
+const test = async () => {
+    await testGetAsset();
+    // testInsertAsset();
+    // testInsertOHLCV();
 
-};
+    dbClient.Close();
+}
 
-// testGetAsset();
-// testInsertAsset();
-// testInsertOHLCV();
+test();
+
 

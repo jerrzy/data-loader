@@ -1,6 +1,12 @@
 const dotenv = require('dotenv');
-const WalkDir = require('./src/data_loader');
+const {WalkDir, LoadCSVs} = require('./src/dir_loader');
 
 dotenv.config();
 
-WalkDir(process.env.dataDir);
+const assets = [];
+
+WalkDir(process.env.dataDir, '', '', assets);
+
+// console.log(assets);
+
+LoadCSVs(assets);

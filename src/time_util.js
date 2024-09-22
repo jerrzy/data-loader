@@ -39,8 +39,18 @@ const containsTimezone = (datetime) => {
     return false;
 };
 
+const containsTime = (datetime) => {
+    const segments = datetime.split(' ');
+    return segments.length > 2;
+};
+
 const dtUtil = {
     ConvertToUTC: (datetime, srcTimezone) => {
+        // timezone doesn't matter for date without time
+        if (!containsTime(datetime)) {
+            return datetime;
+        }
+
         if (containsTimezone(datetime)) {
             const dt = new Date(datetime);
             return moment(dt).tz(TIMEZONE).format('YYYY-MM-DD HH:mm:ss');
